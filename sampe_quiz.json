@@ -1,0 +1,22 @@
+{
+  "title": "Sample Quiz",
+  "description": "Test your knowledge.",
+  "questions": [
+    {
+      "question": "What is 2 + 2?",
+      "options": ["3", "4", "5"],
+      "correct": 2
+    },
+    {
+      "question": "What is the capital of France?",
+      "options": ["Berlin", "London", "Paris"],
+      "correct": 3
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Earth", "Mars", "Jupiter", "Saturn"],
+      "correct": 2
+    }
+
+  ]
+}

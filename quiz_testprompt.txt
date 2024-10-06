@@ -1,0 +1,24 @@
+propose test and validation approach
+
+
+with unittest provide tests for each defined class
+
+
+for quiz file format validation and content display testing, create several JSON files and a method to run
+
+
+test configuration via config file, command line, environment variables
+
+
+combine or sequence unit tests, file tests, configuration tests and integrate with Github Actions
+
+
+what other tests are appropriate
+
+
+suggest additional security and performance tests
+Propose edge case and boundary tests
+
+
+add configuration tests with invalid type or value in file, command line or environment
+add user input tests for validation, sanitization, checking all options

@@ -1,0 +1,236 @@
+Create a Python-based interactive multiple-choice quiz application with the following features:
+Data Loading:
+Load the quiz questions from a JSON file. Each question includes the question text, a list of options, and the index of the correct option.
+Validate the loaded questions to ensure they are well-formed (i.e., must have a question, options, and correct answer).
+Allow the quiz data to include additional fields like a quiz-level title, subtitle, description, and question-level title and subtitle.
+Quiz Interaction:
+Display each question with its corresponding options and prompt the user to input their answer.
+Allow the user to input special commands:
+next: Move to the next question without answering.
+skip: Skip the current question and return to it later.
+quit: End the quiz early and display the results.
+Process user answers and provide immediate feedback (correct/incorrect) before moving on to the next question.
+Scoring and Results:
+Tally the score based on the number of correct answers.
+At the end of the quiz, display the total number of questions, correct answers, and any skipped or incorrect questions.
+Environment Support:
+Support different environments:
+Local: Interactive terminal-based input/output.
+File-Based: Read questions and write results to files.
+Test Mode: Predefined input and output streams for automated testing.
+Action Mode: Placeholder for API-triggered quiz functionality.
+Use a logging mechanism to capture important events (e.g., quiz start, end, and user actions) in a log file.
+Text Validation and Sanitization:
+Ensure the input text for questions and options is within valid length limits and contains only allowed characters.
+Handle invalid text based on a specified policy (e.g., reject, remove, or replace invalid characters).
+Quiz Results:
+At the end of the quiz, display a summary of the results, including:
+Total questions answered.
+Number of correct answers.
+List of skipped or incorrectly answered questions, including the correct answer for each.
+
+
+update requirements and regenerate code
+Develop a Python-based multiple-choice quiz application with the following detailed requirements:
+1. Quiz Data Handling:
+Data Source:
+The quiz questions and answers must be stored in a structured JSON file, with fields such as question, options, correct, title, subtitle, and description.
+The structure must support both quiz-level information (e.g., title, description) and question-level details (e.g., individual question title and subtitle).
+Validation:
+The JSON structure must be validated for completeness:
+Each question must contain the fields question, options (at least two), and correct (with a 1-based index corresponding to the correct option).
+Questions with invalid or missing data must be skipped with an appropriate log message.
+2. User Interaction:
+Quiz Flow:
+Display the quiz title, subtitle, and description at the start of the quiz.
+For each question, display:
+The question number.
+The question text (and optionally, the question title and subtitle).
+The list of answer options, with each option displayed alongside a number (1-based).
+Prompt the user for an input corresponding to the correct option (e.g., 1, 2, 3, 4).
+After each input, provide immediate feedback on whether the answer is correct or incorrect.
+Special Commands:
+next: Skip the current question and move to the next one.
+skip: Mark the question as skipped and return to it later if needed.
+quit: Allow the user to quit the quiz at any time, displaying the results up to that point.
+restart: Reset the entire quiz and allow the user to start from the first question.
+Input Validation:
+Ensure that the user's input is a valid number within the range of options for that question or a recognized command (next, skip, quit, etc.).
+If invalid input is detected, prompt the user again.
+3. Scoring and Results:
+Score Calculation:
+Keep track of correct answers, skipped questions, and total questions answered.
+End-of-Quiz Results:
+Display a summary at the end of the quiz:
+Total number of questions.
+Number of correct answers.
+Number of skipped questions.
+Detailed Feedback:
+List all incorrect or skipped questions at the end of the quiz, showing the user's answer and the correct answer.
+4. Error Handling and Logging:
+Logging:
+A log file must be maintained to record key events, including:
+Start and end of the quiz.
+User commands (e.g., skip, next, quit).
+Invalid input or skipped questions.
+Error Handling:
+If the quiz data is malformed or missing required fields, log a detailed error and skip the invalid entries.
+Ensure that no invalid questions or answers are presented to the user during the quiz.
+Text Sanitization:
+All input text (for both questions and answers) must be validated to ensure it meets length and character set constraints (e.g., no special characters).
+If any text is invalid, apply the appropriate handling policy (e.g., reject, replace, or remove invalid characters).
+5. Environment and Input/Output Management:
+Environment Detection:
+The quiz must be able to run in multiple environments:
+Local: Direct interaction through the terminal (keyboard input, console output).
+File-Based: Read inputs from a file and write the results to an output file.
+Test Mode: Use predefined inputs for automated testing and log results.
+Action Mode: Placeholder support for possible API interaction or external triggers.
+Logging and File Handling:
+Log quiz events (start, end, commands, and results) to a log file.
+For file-based mode, ensure that input/output files are handled properly (opened at the start and closed at the end).
+Centralized Input/Output:
+Implement a centralized input/output handling system that abstracts the specifics of how the input is provided (local, file, or action mode).
+6. Code Modularity:
+The code must be modular, separating concerns between different parts of the system:
+Quiz Execution: Handles the main quiz flow, including question presentation and user interaction.
+Quiz Processing: Handles loading, validation, and sanitization of quiz data.
+Environment Handling: Manages different input/output modes and logging mechanisms.
+Command Processing: Deals with user commands like skip, next, quit, and restart.
+
+
+update requirements and generate
+Question and Answer Size and Character Set Validation
+a. Size Validation
+Questions and Answers should have a defined length to ensure readability and proper user interaction.
+Implement minimum and maximum size limits for both question text and answer options:
+Question: Minimum length: 1 character, Maximum length: 1000 characters.
+Answer Options: Each answer option must have a minimum length of 1 character and a maximum length of 500 characters.
+If the text exceeds the maximum length or is below the minimum, the question or answer should be rejected or sanitized.
+b. Character Set Validation
+To ensure that questions and answers only contain valid characters, use a whitelist character set:
+Allowed characters: Alphanumeric (A-Z, a-z, 0-9), spaces, and common punctuation marks (.,!?'-").
+Text containing disallowed characters (e.g., special symbols like @, #, or emojis) should be either rejected or sanitized based on the sanitization policy.
+c. Optional Sanitization
+Sanitization can be enabled or disabled via configuration. It can be applied to questions and answer options.
+If sanitization is enabled, there are three possible strategies for handling invalid characters:
+Reject: If invalid characters are detected, reject the question or answer entirely.
+Remove: Strip out invalid characters from the text.
+Replace: Replace invalid characters with a placeholder character (e.g., ? or _).
+2. User Response Normalization, Size, and Range Validation
+a. Response Normalization
+When the user inputs their response (typically a number corresponding to the answer), the input should be normalized by:
+Stripping leading/trailing whitespaces.
+Converting to lowercase (if it is a command like skip or quit).
+Ensuring digits are converted to integers.
+b. Size and Range Validation
+Size Validation: Ensure that the user's response is neither empty nor too long. This is particularly relevant when handling user commands (like restart, quit, etc.).
+Minimum size: 1 character.
+Maximum size: 100 characters (to handle reasonable length commands).
+Range Validation:
+Ensure that numeric inputs (e.g., 1, 2, etc.) correspond to valid answer options.
+The input must be a valid number in the range of available options. If out of range, the user should be prompted to try again.
+3. User Commands (restart, skip, quit, help)
+a. Command Behavior
+restart: Resets the quiz to the first question. The user’s answers are cleared, and the quiz restarts from question 1.
+skip: Marks the current question as skipped and moves to the next question. Skipped questions can be revisited at the end of the quiz.
+quit: Ends the quiz early, and the current results (including skipped or unanswered questions) are displayed.
+help: Displays a list of available commands and their descriptions.
+b. Command Shortening and Alternatives
+Users should be able to input shortened versions or alternatives of the commands. For example:
+restart: Can be shortened to r.
+skip: Can be shortened to s.
+quit: Can be shortened to q.
+help: Can be shortened to h or ?.
+Implement a dictionary that maps shortened commands and their full equivalents:
+Commands should be case-insensitive and normalized before execution.
+4. Config File for Options
+A configuration file should be used to allow customization of quiz behavior, such as quiz length, input/output files, and the environment in which the quiz runs.
+a. Example Config File (config.json)
+b. Configurable Options:
+quiz_length: The maximum number of questions that the quiz should present. If not set, defaults to the total number of questions in the quiz file.
+input_file: The file from which the quiz questions are loaded.
+output_file: The file where quiz results are written (if running in file-based mode).
+environment: Specifies the environment in which the quiz runs (local, file, test, action).
+sanitization_policy: Defines how to handle invalid characters in quiz data (options: reject, remove, replace).
+logging_enabled: A boolean value that enables or disables logging.
+c. Loading Configuration
+The configuration should be loaded at the start of the quiz execution:
+5. System Environment Overrides
+The system environment should allow overriding certain configuration options, including the configuration file itself, by setting environment variables. If the environment variables are not set, the values should default to what is defined in the code or the config file.
+a. Environment Variables:
+QUIZ_CONFIG_FILE: Overrides the default configuration file.
+QUIZ_LENGTH: Overrides the number of questions in the quiz.
+QUIZ_INPUT_FILE: Specifies the input file containing quiz data.
+QUIZ_OUTPUT_FILE: Specifies the output file for results.
+QUIZ_ENVIRONMENT: Overrides the environment mode (local, file, test, action).
+b. Defaults in Code
+If environment variables are not set, the system should use defaults from the config file or predefined values in the code:
+
+
+n and next are only an alias for skip
+quiz title, subtitle, description and question title, subtitle are optional
+these text fields question and answer text should be 1 to 1000 characters long, trimmed beyond that
+each should be validated and sanitized
+implement more sophisticated character set and valid character check
+implement sanitization for common attack vectors
+add a placeholder for more checks, like suitability
+consider whether self.commands and help_text are redundant
+consider continue twice in run_quiz() around line 269
+consider so much code in __main__ section
+
+
+document complex code sections, classes, and functions according to PEP 257
+
+
+
+
+
+suggest how to split into several source files
+
+
+agree with making separate files for each major class Environment, Command, Quiz
+###But seems like there are too many other files
+
+
+propose test and validation approach
+
+
+with unittest provide tests for each defined class
+
+
+for quiz file format validation and content display testing, create several JSON files and a method to run
+
+
+test configuration via config file, command line, environment variables
+
+
+combine or sequence unit tests, file tests, configuration tests and integrate with Github Actions
+
+
+what other tests are appropriate
+
+
+suggest additional security and performance tests
+Propose edge case and boundary tests
+
+
+add configuration tests with invalid type or value in file, command line or environment
+add user input tests for validation, sanitization, checking all options
+
+
+
+
+how to generalize to a system where many quizzes are taken by many users
+
+
+combine requirements and work items into complete and consistent sets, to implement PoC, Demo, MVP, prototype
+
+
+suggest existing libraries or frameworks that provide significant pieces of desired functionality
+suggest no code or low code platforms or system that could fulfil some stages of development quickly
+
+
+which among mentioned no code, low code, or student management systems are open source
+
+

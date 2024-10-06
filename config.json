@@ -1,0 +1,8 @@
+{
+  "quiz_length": 10,
+  "input_file": "quiz.json",
+  "output_file": "results.txt",
+  "environment": "local",
+  "sanitization_policy": "reject",
+  "logging_enabled": true
+}

@@ -1,0 +1,91 @@
+Sample JSON Files
+
+valid_quiz.json
+{
+  "title": "General Knowledge Quiz",
+  "subtitle": "Test your general knowledge",
+  "description": "This quiz covers various topics.",
+  "questions": [
+    {
+      "title": "Mathematics",
+      "subtitle": "Basic Arithmetic",
+      "question": "What is 5 + 7?",
+      "options": ["10", "11", "12", "13"],
+      "correct": 3
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Earth", "Mars", "Jupiter", "Venus"],
+      "correct": 2
+    }
+  ]
+}
+
+missing_fields_quiz.json
+{
+  "title": "Incomplete Quiz",
+  "questions": [
+    {
+      "question": "This question is missing options and correct answer."
+    },
+    {
+      "options": ["Option 1", "Option 2"],
+      "correct": 1
+    }
+  ]
+}
+
+invalid_types_quiz.json
+{
+  "title": "Invalid Types Quiz",
+  "questions": [
+    {
+      "question": "What is the capital of France?",
+      "options": "Paris, London, Berlin",  // Incorrect type: should be an array
+      "correct": "1"  // Incorrect type: should be an integer
+    }
+  ]
+}
+
+exceeds_length_quiz.json
+{
+  "title": "Exceeds Length Quiz",
+  "questions": [
+    {
+      "question": "A" * 2000,  // String exceeds maximum length
+      "options": ["Option 1", "Option 2"],
+      "correct": 1
+    }
+  ]
+}
+Note: Since JSON does not support expressions like "A" * 2000, you'll need to generate this string in code when creating the file.
+
+disallowed_chars_quiz.json
+{
+  "title": "Disallowed Characters Quiz",
+  "questions": [
+    {
+      "question": "What does <script>alert('XSS')</script> do?",
+      "options": ["Option 1", "Option 2"],
+      "correct": 1
+    }
+  ]
+}
+
+empty_quiz.json
+{
+  "title": "Empty Quiz",
+  "questions": []
+}
+
+partial_optional_fields.json
+{
+  "description": "A quiz with some optional fields missing.",
+  "questions": [
+    {
+      "question": "What is the boiling point of water?",
+      "options": ["90°C", "100°C", "110°C"],
+      "correct": 2
+    }
+  ]
+}
