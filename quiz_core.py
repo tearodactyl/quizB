@@ -182,7 +182,7 @@ class Quiz:
                     self.env_handler.output("Question skipped.")
                     return
                 elif command == 'restart':
-                    self.env_handler.output("Restarting quiz...")
+                    self.env_handler.output("Restarting quiz.")
                     self.restart_quiz()
                     return
                 elif command == 'quit':
